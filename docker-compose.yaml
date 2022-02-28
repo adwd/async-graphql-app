@@ -1,0 +1,9 @@
+version: "2"
+services:
+  postgres:
+    image: dexels/dvdrental:1
+    restart: always
+    ports:
+      - "5555:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
