@@ -1,16 +1,10 @@
-use actix_web::{guard, http::header::ContentType, test, web, App};
-use async_graphql_app::{get_schema, index, index_playground};
+use crate::helpers::get_app;
+use actix_web::{http::header::ContentType, test, web};
 
 #[actix_web::test]
 async fn test_query() {
     // Arrange
-    let schema = get_schema();
-    let app = test::init_service(
-        App::new()
-            .app_data(web::Data::new(schema))
-            .service(web::resource("/").guard(guard::Post()).to(index)),
-    )
-    .await;
+    let app = get_app().await;
 
     // Act
     let req = test::TestRequest::post()
@@ -27,13 +21,7 @@ async fn test_query() {
 #[actix_web::test]
 async fn test_playground() {
     // Arrange
-    let schema = get_schema();
-    let app = test::init_service(
-        App::new()
-            .app_data(web::Data::new(schema))
-            .route("/", web::get().to(index_playground)),
-    )
-    .await;
+    let app = get_app().await;
 
     // Act
     let req = test::TestRequest::get().uri("/").to_request();

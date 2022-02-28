@@ -16,3 +16,7 @@ name = "async-graphql-app"
 async-graphql = "3.0.31"
 async-graphql-actix-web = "3.0.31"
 actix-web = { version = "4.0.1", default-features = false, features = ["macros"] }
+
+[dev-dependencies]
+actix-http = "3.0.0"
+actix-service = "2.0.2"

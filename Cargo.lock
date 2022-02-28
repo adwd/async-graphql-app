@@ -329,6 +329,8 @@ dependencies = [
 name = "async-graphql-app"
 version = "0.1.0"
 dependencies = [
+ "actix-http",
+ "actix-service",
  "actix-web",
  "async-graphql",
  "async-graphql-actix-web",
